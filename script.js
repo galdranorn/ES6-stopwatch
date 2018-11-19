@@ -1,4 +1,5 @@
 class Stopwatch {
+
     constructor(display) {
         this.running = false;
         this.display = display;
@@ -7,16 +8,22 @@ class Stopwatch {
     }
 
     reset() {
+        this.running = false;
         this.times = {
             minutes: 0,
             seconds: 0,
             miliseconds: 0
         };
+        this.print();
     }
 
     print() {
         this.display.innerText = this.format(this.times);
     }
+
+    /*save() {
+        return <li>{this.print()}</li>
+    }*/
 
     format(times) {
         return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
@@ -62,6 +69,11 @@ startButton.addEventListener('click', () => stopwatch.start());
 
 let stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', () => stopwatch.stop());
+
+let resetButton = document.getElementById('reset');
+resetButton.addEventListener('click', () => stopwatch.reset());
+
+
 
 function pad0(value) {
     let result = value.toString();
