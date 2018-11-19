@@ -109,6 +109,12 @@ saveButton.addEventListener('click', function () {
     ul.appendChild(li);
 });
 
+var clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', function () {
+    var ul = document.getElementById('results');
+    ul.innerHTML = '';
+});
+
 function pad0(value) {
     var result = value.toString();
     if (result.length < 2) {

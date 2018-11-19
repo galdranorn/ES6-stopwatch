@@ -85,6 +85,12 @@ saveButton.addEventListener('click', () => {
     ul.appendChild(li);
 });
 
+let clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', () => {
+    let ul = document.getElementById('results');
+    ul.innerHTML = ''
+});
+
 
 function pad0(value) {
     let result = value.toString();
