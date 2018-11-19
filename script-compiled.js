@@ -100,6 +100,15 @@ resetButton.addEventListener('click', function () {
     return stopwatch.reset();
 });
 
+var saveButton = document.getElementById('save');
+saveButton.addEventListener('click', function () {
+    console.log(stopwatch.times);
+    var ul = document.getElementById('results');
+    var li = document.createElement('li');
+    li.innerHTML = '<p>Minutes: ' + stopwatch.times.minutes + '</p>\n        <p>Seconds: ' + stopwatch.times.seconds + '</p>\n        <p>Miliseconds: ' + stopwatch.times.miliseconds + '</p>';
+    ul.appendChild(li);
+});
+
 function pad0(value) {
     var result = value.toString();
     if (result.length < 2) {

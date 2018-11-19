@@ -73,6 +73,17 @@ stopButton.addEventListener('click', () => stopwatch.stop());
 let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', () => stopwatch.reset());
 
+let saveButton = document.getElementById('save');
+saveButton.addEventListener('click', () => {
+    console.log(stopwatch.times);
+    let ul = document.getElementById('results');
+    let li = document.createElement('li');
+    li.innerHTML = 
+        `<p>Minutes: ${stopwatch.times.minutes}</p>
+        <p>Seconds: ${stopwatch.times.seconds}</p>
+        <p>Miliseconds: ${stopwatch.times.miliseconds}</p>`
+    ul.appendChild(li);
+});
 
 
 function pad0(value) {
