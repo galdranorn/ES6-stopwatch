@@ -4,20 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
   <body>
-    <nav class="controls">
-      <a href="#" class="button" id="start">Start</a>
-      <a href="#" class="button" id="stop">Stop</a><br>
-      <a href="#" class="button" id="reset">Reset</a>
-      <a href="#" class="button" id="save">Save result</a>
-      <a href="#" class="button" id="clear">Clear the list</a>
-    </nav>
+    <main>
+      <nav class="controls">
+        <div class="smallBtns">
+          <a href="#" class="button" id="reset">Reset</a>
+          <a href="#" class="button" id="save">Save result</a>
+          <a href="#" class="button" id="clear">Clear the list</a>
+        </div>
+        <div class="bigBtns">
+          <a href="#" class="button start" id="start">Start</a>
+          <a href="#" class="button stop" id="stop">Stop</a>
+        </div>
+      </nav>
 
-    <div class="stopwatch"></div>
-    <ul id="results"></ul>
+      <div class="stopwatch"></div>
+      <p class="list">Results list:</p>
+      <ul id="results">
+      </ul>
+    </main>
 
     <script type="text/javascript" src="script-compiled.js"></script>
   </body>

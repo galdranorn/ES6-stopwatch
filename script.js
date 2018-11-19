@@ -21,10 +21,6 @@ class Stopwatch {
         this.display.innerText = this.format(this.times);
     }
 
-    /*save() {
-        return <li>{this.print()}</li>
-    }*/
-
     format(times) {
         return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
     }
@@ -79,9 +75,7 @@ saveButton.addEventListener('click', () => {
     let ul = document.getElementById('results');
     let li = document.createElement('li');
     li.innerHTML = 
-        `<p>Minutes: ${stopwatch.times.minutes}</p>
-        <p>Seconds: ${stopwatch.times.seconds}</p>
-        <p>Miliseconds: ${stopwatch.times.miliseconds}</p>`
+        `${stopwatch.times.minutes}:${stopwatch.times.seconds}:${stopwatch.times.miliseconds}`
     ul.appendChild(li);
 });
 

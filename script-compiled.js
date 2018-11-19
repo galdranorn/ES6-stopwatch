@@ -30,11 +30,6 @@ var Stopwatch = function () {
         value: function print() {
             this.display.innerText = this.format(this.times);
         }
-
-        /*save() {
-            return <li>{this.print()}</li>
-        }*/
-
     }, {
         key: 'format',
         value: function format(times) {
@@ -105,7 +100,7 @@ saveButton.addEventListener('click', function () {
     console.log(stopwatch.times);
     var ul = document.getElementById('results');
     var li = document.createElement('li');
-    li.innerHTML = '<p>Minutes: ' + stopwatch.times.minutes + '</p>\n        <p>Seconds: ' + stopwatch.times.seconds + '</p>\n        <p>Miliseconds: ' + stopwatch.times.miliseconds + '</p>';
+    li.innerHTML = stopwatch.times.minutes + ':' + stopwatch.times.seconds + ':' + stopwatch.times.miliseconds;
     ul.appendChild(li);
 });
 
