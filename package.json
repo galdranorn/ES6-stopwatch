@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server",
+    "start": "babel script.js --watch --out-file script-compiled.js",
+    "start-http": "http-server",
     "test": "npm run test:html",
     "test:html": "globstar nu-html-checker *.html",
     "init-project": "npm install && npm-run-all init:*",
@@ -35,6 +36,8 @@
   "homepage": "https://github.com/galdranorn/learning-git#readme",
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
     "browser-sync": "^2.24.6",
     "globstar": "^1.0.0",
     "http-server": "^0.11.1",
