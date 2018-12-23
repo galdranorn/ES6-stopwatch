@@ -1,119 +1,150 @@
-'use strict';
+"use strict";
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _react = require("react");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _react2 = _interopRequireDefault(_react);
 
-var Stopwatch = function () {
-    function Stopwatch(display) {
-        _classCallCheck(this, Stopwatch);
+var _reactDom = require("react-dom");
 
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactDom2.default.render(_react2.default.createElement(
+    "p",
+    null,
+    "Hello"
+), document.getElementById("stopwatch"));
+
+// ------------------------ NEW CODE
+
+/*class Stopwatch extends React.Component {
+    constructor () {
+        super();
+        this.state = {
+            running: false,
+            display: display,
+            times: {
+                minutes: 0,
+                seconds: 0,
+                miliseconds: 0    
+            }
+        }
+        this.reset = this.reset.bind(this)
+    }
+
+    reset() {
+        this.setState({
+            running: false,
+            display: display,
+            times: {
+                minutes: 0,
+                seconds: 0,
+                miliseconds: 0    
+            }
+        })
+    }
+
+    render() {
+        return (
+        <div>Hello</div>
+    )};
+};*/
+
+// ------------------ OLD CODE
+
+/*class Stopwatch {
+
+    constructor(display) {
         this.running = false;
         this.display = display;
         this.reset();
         this.print(this.times);
     }
 
-    _createClass(Stopwatch, [{
-        key: 'reset',
-        value: function reset() {
-            this.running = false;
-            this.times = {
-                minutes: 0,
-                seconds: 0,
-                miliseconds: 0
-            };
-            this.print();
-        }
-    }, {
-        key: 'print',
-        value: function print() {
-            this.display.innerText = this.format(this.times);
-        }
-    }, {
-        key: 'format',
-        value: function format(times) {
-            return pad0(times.minutes) + ':' + pad0(times.seconds) + ':' + pad0(Math.floor(times.miliseconds));
-        }
-    }, {
-        key: 'start',
-        value: function start() {
-            var _this = this;
+    reset() {
+        this.running = false;
+        this.times = {
+            minutes: 0,
+            seconds: 0,
+            miliseconds: 0
+        };
+        this.print();
+    }
 
-            if (!this.running) {
-                this.running = true;
-                this.watch = setInterval(function () {
-                    return _this.step();
-                }, 10);
-            }
+    print() {
+        this.display.innerText = this.format(this.times);
+    }
+
+    format(times) {
+        return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
+    }
+
+    start() {
+        if (!this.running) {
+            this.running = true;
+            this.watch = setInterval(() => this.step(), 10);
         }
-    }, {
-        key: 'step',
-        value: function step() {
-            if (!this.running) return;
-            this.calculate();
-            this.print();
+    }
+
+    step() {
+        if (!this.running) return;
+        this.calculate();
+        this.print();
+    }
+
+    calculate() {
+        this.times.miliseconds += 1;
+        if (this.times.miliseconds >= 100) {
+            this.times.seconds += 1;
+            this.times.miliseconds = 0;
         }
-    }, {
-        key: 'calculate',
-        value: function calculate() {
-            this.times.miliseconds += 1;
-            if (this.times.miliseconds >= 100) {
-                this.times.seconds += 1;
-                this.times.miliseconds = 0;
-            }
-            if (this.times.seconds >= 60) {
-                this.times.minutes += 1;
-                this.times.seconds = 0;
-            }
+        if (this.times.seconds >= 60) {
+            this.times.minutes += 1;
+            this.times.seconds = 0;
         }
-    }, {
-        key: 'stop',
-        value: function stop() {
-            this.running = false;
-            clearInterval(this.watch);
-        }
-    }]);
+    }
 
-    return Stopwatch;
-}();
+    stop() {
+        this.running = false;
+        clearInterval(this.watch);
+    }
+    
+}
 
-var stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
+const stopwatch = new Stopwatch(
+document.querySelector('.stopwatch'));
 
-var startButton = document.getElementById('start');
-startButton.addEventListener('click', function () {
-    return stopwatch.start();
-});
+let startButton = document.getElementById('start');
+startButton.addEventListener('click', () => stopwatch.start());
 
-var stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', function () {
-    return stopwatch.stop();
-});
+let stopButton = document.getElementById('stop');
+stopButton.addEventListener('click', () => stopwatch.stop());
 
-var resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', function () {
-    return stopwatch.reset();
-});
+let resetButton = document.getElementById('reset');
+resetButton.addEventListener('click', () => stopwatch.reset());
 
-var saveButton = document.getElementById('save');
-saveButton.addEventListener('click', function () {
+let saveButton = document.getElementById('save');
+saveButton.addEventListener('click', () => {
     console.log(stopwatch.times);
-    var ul = document.getElementById('results');
-    var li = document.createElement('li');
-    li.innerHTML = stopwatch.times.minutes + ':' + stopwatch.times.seconds + ':' + stopwatch.times.miliseconds;
+    let ul = document.getElementById('results');
+    let li = document.createElement('li');
+    li.innerHTML = 
+        `${stopwatch.times.minutes}:${stopwatch.times.seconds}:${stopwatch.times.miliseconds}`
     ul.appendChild(li);
 });
 
-var clearButton = document.getElementById('clear');
-clearButton.addEventListener('click', function () {
-    var ul = document.getElementById('results');
-    ul.innerHTML = '';
+let clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', () => {
+    let ul = document.getElementById('results');
+    ul.innerHTML = ''
 });
 
+
 function pad0(value) {
-    var result = value.toString();
+    let result = value.toString();
     if (result.length < 2) {
         result = '0' + result;
     }
     return result;
-}
+}*/

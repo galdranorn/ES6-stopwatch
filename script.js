@@ -1,4 +1,46 @@
-class Stopwatch {
+import React from "react"
+import ReactDOM from "react-dom"
+
+ReactDOM.render(<p>Hello</p>, document.getElementById("stopwatch"));
+
+// ------------------------ NEW CODE
+
+/*class Stopwatch extends React.Component {
+    constructor () {
+        super();
+        this.state = {
+            running: false,
+            display: display,
+            times: {
+                minutes: 0,
+                seconds: 0,
+                miliseconds: 0    
+            }
+        }
+        this.reset = this.reset.bind(this)
+    }
+
+    reset() {
+        this.setState({
+            running: false,
+            display: display,
+            times: {
+                minutes: 0,
+                seconds: 0,
+                miliseconds: 0    
+            }
+        })
+    }
+
+    render() {
+        return (
+        <div>Hello</div>
+    )};
+};*/
+
+// ------------------ OLD CODE
+
+/*class Stopwatch {
 
     constructor(display) {
         this.running = false;
@@ -92,4 +134,4 @@ function pad0(value) {
         result = '0' + result;
     }
     return result;
-}
+}*/
