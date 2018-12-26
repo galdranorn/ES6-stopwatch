@@ -13,14 +13,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Stopwatch = function (_React$Component) {
     _inherits(Stopwatch, _React$Component);
 
-    function Stopwatch(display) {
+    function Stopwatch() {
         _classCallCheck(this, Stopwatch);
 
         var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this));
 
         _this.state = {
             running: false,
-            display: display,
+            display: document.getElementById('stopwatch-display'),
             times: {
                 minutes: 0,
                 seconds: 0,
@@ -36,7 +36,7 @@ var Stopwatch = function (_React$Component) {
         value: function reset() {
             this.setState({
                 running: false,
-                display: display,
+                display: document.getElementById('stopwatch-display'),
                 times: {
                     minutes: 0,
                     seconds: 0,
@@ -47,7 +47,7 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'print',
         value: function print() {
-            this.display.innerText = this.format(this.times);
+            this.state.display.innerText = this.format(this.state.times);
         }
     }, {
         key: 'start',
@@ -71,20 +71,27 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'calculate',
         value: function calculate() {
-            this.times.miliseconds += 1;
-            if (this.times.miliseconds >= 100) {
-                this.times.seconds += 1;
-                this.times.miliseconds = 0;
+            this.state.times.miliseconds += 1;
+            if (this.state.times.miliseconds >= 100) {
+                this.state.times.seconds += 1;
+                this.state.times.miliseconds = 0;
             }
-            if (this.times.seconds >= 60) {
-                this.times.minutes += 1;
-                this.times.seconds = 0;
+            if (this.state.times.seconds >= 60) {
+                this.state.times.minutes += 1;
+                this.state.times.seconds = 0;
             }
         }
     }, {
         key: 'format',
         value: function format() {
-            return pad0(this.times.minutes) + ':' + pad0(this.times.seconds) + ':' + pad0(Math.floor(this.times.milliseconds));
+            var pad0 = function pad0(value) {
+                var result = value.toString();
+                if (result.length < 2) {
+                    result = '0' + result;
+                }
+                return result;
+            };
+            return pad0(this.state.times.minutes) + ':' + pad0(this.state.times.seconds) + ':' + pad0(Math.floor(this.state.times.miliseconds));
         }
     }, {
         key: 'stop',
@@ -95,7 +102,7 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            return React.createElement('div', { className: 'container' }, React.createElement('div', { className: 'controls' }, React.createElement('a', { onClick: this.start.bind(this), className: 'button', href: '#' }, 'Start'), React.createElement('a', { onClick: this.stop.bind(this), className: 'button', href: '#' }, 'Stop'), React.createElement('a', { onClick: this.reset.bind(this), className: 'button', href: '#' }, 'Reset')), React.createElement('div', { className: 'stopwatch' }, this.format()));
+            return React.createElement('div', { className: 'container' }, React.createElement('div', { className: 'controls bigBtns' }, React.createElement('a', { onClick: this.start.bind(this), className: 'button start', href: '#' }, 'Start'), React.createElement('a', { onClick: this.stop.bind(this), className: 'button stop', href: '#' }, 'Stop'), React.createElement('a', { onClick: this.reset.bind(this), className: 'button', href: '#' }, 'Reset')), React.createElement('div', { id: 'stopwatch-display' }, this.format()));
         }
     }]);
 
@@ -214,11 +221,3 @@ clearButton.addEventListener('click', () => {
     let ul = document.getElementById('results');
     ul.innerHTML = ''
 });*/
-
-function pad0(value) {
-    var result = value.toString();
-    if (result.length < 2) {
-        result = '0' + result;
-    }
-    return result;
-}
